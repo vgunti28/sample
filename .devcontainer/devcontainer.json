@@ -1,12 +1,29 @@
 {
-  "name": "K8s Dev",
-  "image": "mcr.microsoft.com/devcontainers/base:ubuntu", 
-  "features": {
-    "ghcr.io/devcontainers/features/docker-in-docker:2": {},
-    "ghcr.io/devcontainers/features/kubectl:1": {},
-    "ghcr.io/devcontainers/features/helm:1": {}
+  "name": "Go",
+  "build": {
+    "dockerfile": "Dockerfile"
   },
-  "postCreateCommand": "echo 'Welcome to Kubernetes dev env!'",
-  "forwardPorts": [3000, 8000],
-  "remoteUser": "vscode"
+
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {
+      "version": "latest"
+    },
+    "ghcr.io/devcontainers/features/kubectl-helm-minikube:1": {}
+  },
+
+  "postCreateCommand": "kind create cluster || true",
+
+  "mounts": [
+    {
+      "type": "volume",
+      "source": "devspace",
+      "target": "/home/vscode"
+    }
+  ],
+
+  "customizations": {
+    "devpod": {
+      "prebuildRepository": "fdog239/prebuilds"
+    }
+  }
 }
