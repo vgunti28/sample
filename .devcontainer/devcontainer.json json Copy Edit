@@ -1,0 +1,12 @@
+{
+  "name": "K8s Dev",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu", 
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {},
+    "ghcr.io/devcontainers/features/kubectl:1": {},
+    "ghcr.io/devcontainers/features/helm:1": {}
+  },
+  "postCreateCommand": "echo 'Welcome to Kubernetes dev env!'",
+  "forwardPorts": [3000, 8000],
+  "remoteUser": "vscode"
+}
